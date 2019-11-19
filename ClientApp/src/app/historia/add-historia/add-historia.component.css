@@ -1,0 +1,14 @@
+textarea{
+    height: 100%;
+    width: 1030px;
+  }
+button > label{
+  font-size: 13px;
+}
+#btnAsignar,#btnCancelar{
+  width: 300px;
+  height: 40px;
+}
+input,select{
+  font-size: 13px;
+}

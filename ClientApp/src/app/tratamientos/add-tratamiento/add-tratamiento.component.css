@@ -1,0 +1,20 @@
+
+th
+{
+  text-align: center;
+}
+#eliminar,#editar{
+	text-align: center;
+  
+  }
+
+  input,select{
+    font-size: 13px;
+  }
+  button{
+    width: 300px;
+    height: 40px;
+}
+button > label{
+  font-size: 13px;
+}

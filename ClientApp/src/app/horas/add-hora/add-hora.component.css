@@ -1,0 +1,29 @@
+input{
+  font-size: 14px;
+}
+#eliminar{
+    width: 300px;
+}
+button > label{
+  font-size: 13px;
+}
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+  }
+table{
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+th
+{
+  text-align: center;
+}
+#eliminar,#editar{
+  text-align: center;
+
+}
+
+  tr:nth-child(even) {background-color: #f2f2f2;}

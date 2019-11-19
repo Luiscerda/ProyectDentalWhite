@@ -1,0 +1,81 @@
+<section class="content">
+    <h2>Registro de Pacientes</h2>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>Tipo Identificacion:</label>
+                    </div>
+                    <div class="form-group">
+                        <select [(ngModel)]="paciente.tipoId" class="form-control">
+                            <option value="R.C">R.C</option>
+                            <option value="T.I">T.I</option>
+                            <option value="C.C">C.C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombres:</label>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="paciente.nombres" class="form-control" placeholder="Nombres Pacientes">
+                    </div>
+                    <div class="form-group">
+                        <label>Direccion:</label>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="paciente.direccion" class="form-control" placeholder="Direccion paciente">
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha Nacimiento:</label>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="paciente.fechaNacimiento" type="date" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>Numero Identificacion:</label>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="paciente.numeroCedula" class="form-control" placeholder="Identificacion paciente">
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos:</label>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="paciente.apellidos" class="form-control" placeholder="Apellidos Pacientes">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefono:</label>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="paciente.telefono" class="form-control" placeholder="Telefono Paciente" >
+                    </div>
+                    <div class="form-group">
+                        <label>Edad:</label>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="paciente.edad" class="form-control" placeholder="Edad paciente" type="number">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="tablaBotones">
+        <table>
+            <tr>
+                <td><button (click)="add()" class="btn btn-primary"><label>Registrar</label></button></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td><button class="btn btn-danger"><label>Cancelar</label></button></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+</section>

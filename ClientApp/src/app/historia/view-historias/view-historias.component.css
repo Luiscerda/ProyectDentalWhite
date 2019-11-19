@@ -1,0 +1,14 @@
+input,select{
+    font-size: 13px;
+}
+button > label{
+    font-size: 13px;
+}
+textarea{
+    height: 100%;
+    width: 1030px;
+  }
+  #btnModificar,#btnAtras{
+    width: 300px;
+    height: 40px;
+  }
