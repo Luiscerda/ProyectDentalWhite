@@ -23,7 +23,8 @@ export class EditTratamientosComponent implements OnInit {
   }
 
   get(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
+    
+    var id = +this.route.snapshot.paramMap.get('codigo_Tratamiento');
     this.tratamientoService.get(id).subscribe(tratamiento => this.tratamiento = tratamiento);
   }
   goBack(): void{

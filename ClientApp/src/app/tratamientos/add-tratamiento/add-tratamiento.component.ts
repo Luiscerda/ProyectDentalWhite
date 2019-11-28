@@ -13,7 +13,7 @@ export class AddTratamientoComponent implements OnInit {
   tratamiento:Tratamiento;
   tratamientos:Tratamiento[];
   ngOnInit() {
-    this.tratamiento = { id: 0, codigo: '', nombre: '', costo: 0 };
+    this.tratamiento = { codigo_Tratamiento: '', nombre: '', costo: 0 };
     this.getAll();
   }
 

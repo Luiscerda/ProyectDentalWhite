@@ -27,14 +27,14 @@
             </thead>
             <tbody>
                 <tr *ngFor="let doctor of doctores | buscarDoctor:filterDoctor">
-                    <td>{{doctor.numeroCedula}}</td>
+                    <td>{{doctor.identificacion_Doctor}}</td>
                     <td>{{doctor.nombres}}</td>
                     <td>{{doctor.apellidos}}</td>
                     <td>{{doctor.telefono}} , {{doctor.telefono2}}</td>
                     <td>{{doctor.direccion}}</td>
                     <td>{{doctor.fechaNacimiento}}</td>
-                    <td routerLink='/editOdontologo/{{doctor.id}}' id="editar"><a class="btn btn-primary btn-edit "><i class="fa fa-edit"></i></a></td>
-                    <td routerLink='/deleteOdontologo/{{doctor.id}}' id="eliminar"><a class="btn btn-danger btn-delete"><i class="fa fa-minus-square fa-lg fa-fw"></i></a></td>
+                    <td routerLink='/editOdontologo/{{doctor.identificacion_Doctor}}' id="editar"><a class="btn btn-primary btn-edit "><i class="fa fa-edit"></i></a></td>
+                    <td routerLink='/deleteOdontologo/{{doctor.identificacion_Doctor}}' id="eliminar"><a class="btn btn-danger btn-delete"><i class="fa fa-minus-square fa-lg fa-fw"></i></a></td>
                 </tr>
             </tbody>
         </table>

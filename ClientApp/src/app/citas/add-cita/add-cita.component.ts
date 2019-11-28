@@ -7,6 +7,8 @@ import { DoctorService } from 'src/app/services/doctor.service';
 import { Doctor } from 'src/app/models/doctor';
 import { CitaService } from 'src/app/services/cita.service';
 import { Cita } from 'src/app/models/cita';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/modal/modal.component';
 
 @Component({
   selector: 'app-add-cita',
@@ -19,7 +21,8 @@ export class AddCitaComponent implements OnInit {
     private horaService : HoraService,
     private pacienteService: PacienteService,
     private doctorService: DoctorService,
-    private citaService: CitaService
+    private citaService: CitaService,
+    private modalService: NgbModal
   ) { }
   cita:Cita;
   paciente:Paciente;
@@ -32,7 +35,7 @@ export class AddCitaComponent implements OnInit {
     this.getAll();
     this.getAllPaciente();
     this.getAllDoctor();
-    this.cita = {id:0, fecha: '', paciente: null, doctor:null, idPaciente:0, idDoctor:0}
+    this.cita = {id:0, fecha: '', paciente: null, doctor:null, identificacion_Paciente:'', idDoctor:''}
   }
 
   getAll(){
@@ -47,12 +50,16 @@ export class AddCitaComponent implements OnInit {
   }
 
   add() {
-    this.cita.idPaciente = parseInt(this.searchPaciente);
-    this.cita.idDoctor = parseInt(this.searchDoctor);
+    this.cita.identificacion_Paciente = this.searchPaciente;
+    this.cita.idDoctor = this.searchDoctor;
     this.citaService.addCita(this.cita)
     .subscribe(cita => {
     alert('Se agrego una nueva cita')
     });
+  }
+
+  openModal(){
+    this.modalService.open(ModalComponent);
   }
 
 }

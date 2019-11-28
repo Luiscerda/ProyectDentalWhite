@@ -12,7 +12,7 @@ export class PacienteCitaPipe implements PipeTransform {
     }else{
       
       for(const paciente of value){
-        if (paciente.numeroCedula.indexOf(arg) > -1) {
+        if (paciente.identificacion_Paciente.indexOf(arg) > -1) {
           resultPaciente.push(paciente);
         }
       }

@@ -9,7 +9,7 @@
                         <label>Codigo Tratamiento:</label>
                     </div>
                     <div class="input-group">
-                        <input [(ngModel)]="tratamiento.codigo" class="form-control" placeholder="Digite codigo del tratamiento">
+                        <input [(ngModel)]="tratamiento.codigo_Tratamiento" class="form-control" placeholder="Digite codigo del tratamiento">
                     </div>
                 </div>
             </div>
@@ -43,9 +43,9 @@
     <div id="tablaBotones">
         <table>
             <tr>
-                <td><button (click)="add()" class="btn btn-primary"><label>Registrar</label></button></td>
+                <td><button (click)="add()" class="btn btn-primary">Registrar</button></td>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td><button class="btn btn-danger"><label>Cancelar</label></button></td>
+                <td><button class="btn btn-danger">Cancelar</button></td>
             </tr>
         </table>
     </div>
@@ -59,7 +59,7 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>ID Tratamiento</th>
+                        <th>CODIGO</th>
                         <th>Nombre</th>
                         <th>Costo</th>
                         <th>Modificar</th>
@@ -68,11 +68,11 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let tratamiento of tratamientos">
-                        <td>{{tratamiento.codigo}}</td>
+                        <td>{{tratamiento.codigo_Tratamiento}}</td>
                         <td>{{tratamiento.nombre}}</td>
                         <td>{{tratamiento.costo}}</td>
-                        <td routerLink='/editTratamiento/{{tratamiento.id}}' id="editar"><a class="btn btn-primary btn-edit "><i class="fa fa-edit"></i></a></td>
-                        <td routerLink='/deleteTratamiento/{{tratamiento.id}}' id="eliminar"><a class="btn btn-danger btn-delete "><i class="fa fa-minus-square fa-lg fa-fw"></i></a></td>
+                        <td routerLink='/editTratamiento/{{tratamiento.codigo_Tratamiento}}' id="editar"><a class="btn btn-primary btn-edit "><i class="fa fa-edit"></i></a></td>
+                        <td routerLink='/deleteTratamiento/{{tratamiento.codigo_Tratamiento}}' id="eliminar"><a class="btn btn-danger btn-delete "><i class="fa fa-minus-square fa-lg fa-fw"></i></a></td>
                     </tr>
                 </tbody>
             </table>

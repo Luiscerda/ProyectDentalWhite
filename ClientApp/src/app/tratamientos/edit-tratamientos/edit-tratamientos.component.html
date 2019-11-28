@@ -10,7 +10,7 @@
                             <label>Codigo Tratamiento:</label>
                         </div>
                         <div class="input-group">
-                            <input [(ngModel)]="tratamiento.codigo" class="form-control" placeholder="Digite codigo del tratamiento" disabled>
+                            <input [(ngModel)]="tratamiento.codigo_Tratamiento" class="form-control" placeholder="Digite codigo del tratamiento" disabled>
                         </div>
                     </div>
                 </div>
@@ -44,9 +44,9 @@
         <div id="tablaBotones">
             <table>
                 <tr>
-                    <td><button (click)="update()" class="btn btn-primary"><label>Modificar</label></button></td>
+                    <td><button (click)="update()" class="btn btn-primary">Modificar</button></td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td><button (click)="goBack()" class="btn btn-danger"><label>Cancelar</label></button></td>
+                    <td><button (click)="goBack()" class="btn btn-danger">Cancelar</button></td>
                 </tr>
             </table>
         </div>

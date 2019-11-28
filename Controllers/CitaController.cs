@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dental_White.Moduls;
+using System.Data;
+using System;
 namespace Dental_White.Controllers
 {
     [Route("api/[controller]")]
@@ -21,7 +23,7 @@ namespace Dental_White.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cita>>> GetCitas()
         {
-            return await _context.Citas.ToListAsync();
+            return await _context.Citas.Include(p=>p.Paciente).Include(d=>d.Doctor).ToListAsync();
         }
         
         [HttpPost]
@@ -34,7 +36,7 @@ namespace Dental_White.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Cita>> GetCitaItem(int id)
         {
-            var citaItem =  _context.Citas.Where(c => c.Id==id).Include(c => c.Paciente).Include(c => c.Doctor).FirstOrDefault();
+            var citaItem = await  _context.Citas.FindAsync(id);
             if (citaItem == null)
             {
                 return NotFound();

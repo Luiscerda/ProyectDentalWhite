@@ -13,7 +13,7 @@ export class AddDoctorComponent implements OnInit {
   doctor:Doctor;
 
   ngOnInit() {
-    this.doctor = { id: 0, numeroCedula: '', nombres: '', apellidos: '', direccion: '', telefono: '',telefono2: '' ,fechaNacimiento: '', edad:0 };
+    this.doctor = { id: 0, identificacion_Doctor: '', nombres: '', apellidos: '', direccion: '', telefono: '',telefono2: '' ,fechaNacimiento: '', edad:0 };
   }
 
   add() {

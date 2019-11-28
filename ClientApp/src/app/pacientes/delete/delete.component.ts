@@ -23,7 +23,7 @@ export class DeleteComponent implements OnInit {
   }
 
   get(): void {
-    const id =+ this.route.snapshot.paramMap.get('id');
+    const id =+ this.route.snapshot.paramMap.get('identificacion_Paciente');
     this.pacienteService.get(id).subscribe(paciente => this.paciente = paciente);
   }
 

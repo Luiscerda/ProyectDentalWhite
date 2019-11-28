@@ -23,7 +23,7 @@ export class EditDoctorComponent implements OnInit {
   }
 
   get(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('identificacion_Doctor');
     this.doctorService.get(id).subscribe(doctor => this.doctor = doctor);
   }
 

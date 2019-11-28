@@ -9,7 +9,7 @@ export class BuscarDoctorPipe implements PipeTransform {
     if(arg === '' || arg.length < 3) return value;
     const resultDoctor = [];
     for(const doctor of value){
-      if(doctor.numeroCedula.indexOf(arg) > -1){
+      if(doctor.identificacion_Doctor.indexOf(arg) > -1){
         resultDoctor.push(doctor);
       }
     }

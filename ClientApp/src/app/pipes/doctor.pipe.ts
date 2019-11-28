@@ -11,7 +11,7 @@ export class DoctorPipe implements PipeTransform {
       return resultDoctor;
     } else{     
       for(const paciente of value){
-        if (paciente.numeroCedula.indexOf(arg) > -1) {
+        if (paciente.identificacion_Doctor.indexOf(arg) > -1) {
           resultDoctor.push(paciente);
         }
       }

@@ -23,15 +23,23 @@ namespace Dental_White.Controllers
 
         [HttpPost]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor){
-            _context.Doctores.Add(doctor);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof (GetDoctorItem), new {id = doctor.Id}, doctor);
+            var doctorItem = await _context.Doctores.FindAsync(doctor.Identificacion_Doctor);
+            if (doctorItem != null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                _context.Doctores.Add(doctor);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof (GetDoctorItem), new {id = doctor.Identificacion_Doctor}, doctor);
+            }   
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Doctor>> GetDoctorItem(int id)
+        [HttpGet("{identificacion}")]
+        public async Task<ActionResult<Doctor>> GetDoctorItem(string identificacion)
         {
-            var doctorItem = await _context.Doctores.FindAsync(id);
+            var doctorItem = await _context.Doctores.FindAsync(identificacion);
             if (doctorItem == null)
             {
                 return NotFound();
@@ -39,9 +47,9 @@ namespace Dental_White.Controllers
             return doctorItem;
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDoctor(int id, Doctor doctor){
-            if (id != doctor.Id)
+        [HttpPut("{cedula}")]
+        public async Task<IActionResult> PutDoctor(string cedula, Doctor doctor){
+            if (cedula != doctor.Identificacion_Doctor)
             {
                 return BadRequest();
             }
@@ -51,9 +59,9 @@ namespace Dental_White.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDoctor(int id){
-            var doctorItem = await _context.Doctores.FindAsync(id);
+        [HttpDelete("{cedula}")]
+        public async Task<IActionResult> DeleteDoctor(string cedula){
+            var doctorItem = await _context.Doctores.FindAsync(cedula);
             if (doctorItem == null)
             {
                 return NotFound();

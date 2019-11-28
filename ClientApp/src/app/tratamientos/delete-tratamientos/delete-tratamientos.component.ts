@@ -23,7 +23,7 @@ export class DeleteTratamientosComponent implements OnInit {
   }
 
   get(): void {
-    const id =+ this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('codigo_tratamiento');
     this.tratamientoService.get(id).subscribe(tratamiento => this.tratamiento = tratamiento);
   }
 

@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -43,7 +44,11 @@ import { DoctorPipe } from './pipes/doctor.pipe';
 import { PacienteCitaPipe } from './pipes/paciente-cita.pipe';
 import { BuscarDoctorPipe } from './pipes/buscar-doctor.pipe';
 import { TratamientoPipe } from './pipes/tratamiento.pipe';
-import { LoginComponent } from './components/login/login.component';
+import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './users/login/login.component';
+import { RegistrationComponent } from './users/registration/registration.component';
+import { ModalComponent } from './modal/modal.component';
+import { AlertModalComponent } from './@base/modals/alert-modal/alert-modal.component';
 
 @NgModule({
   declarations: [
@@ -85,16 +90,24 @@ import { LoginComponent } from './components/login/login.component';
     PacienteCitaPipe,
     BuscarDoctorPipe,
     TratamientoPipe,
-    LoginComponent
+    UsersComponent,
+    LoginComponent,
+    RegistrationComponent,
+    ModalComponent,
+    AlertModalComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
     RouterModule.forRoot([
     ]),
     AppRoutingModule
   ],
+  entryComponents: [ModalComponent,
+    AlertModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

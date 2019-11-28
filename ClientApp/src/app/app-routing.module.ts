@@ -27,8 +27,19 @@ import { ListEnfermeraComponent } from './empleados/enfermeras/list-enfermera/li
 import { AddPagosComponent } from './pagos/add-pagos/add-pagos.component';
 import { EditEnfermeraComponent } from './empleados/enfermeras/edit-enfermera/edit-enfermera.component';
 import { DeleteEnfermeraComponent } from './empleados/enfermeras/delete-enfermera/delete-enfermera.component';
+import { UsersComponent } from './users/users.component';
+import { RegistrationComponent } from './users/registration/registration.component';
+import { LoginComponent } from './users/login/login.component';
 
 const routes:Routes =[
+  /*{path: '', redirectTo:'/users/registration', pathMatch:'full'},
+  {
+    path: 'users', component: UsersComponent,
+    children: [
+      {path:'registration', component: RegistrationComponent},
+      {path:'login', component: LoginComponent}
+    ]
+  },*/
   {
     path: 'pacientesAdd',
     component: AddComponent
@@ -38,11 +49,11 @@ const routes:Routes =[
     component: ListComponent
   },
   {
-    path: 'pacienteEdit/:id',
+    path: 'pacienteEdit/:identificacion_Paciente',
     component: EditComponent
   },
   {
-    path: 'pacienteDelete/:id',
+    path: 'pacienteDelete/:identificacion_Paciente',
     component: DeleteComponent
   },
   {
@@ -94,11 +105,11 @@ const routes:Routes =[
     component: AddTratamientoComponent
   },
   {
-    path: 'editTratamiento/:id',
+    path: 'editTratamiento/:codigo_Tratamiento',
     component: EditTratamientosComponent
   },
   {
-    path: 'deleteTratamiento/:id',
+    path: 'deleteTratamiento/:codigo_Tratamiento',
     component:  DeleteTratamientosComponent 
   },
   {
@@ -110,11 +121,11 @@ const routes:Routes =[
     component: ListDoctorComponent
   },
   {
-    path: 'editOdontologo/:id',
+    path: 'editOdontologo/:identificacion_Doctor',
     component: EditDoctorComponent
   },
   {
-    path: 'deleteOdontologo/:id',
+    path: 'deleteOdontologo/:identificacion_Doctor',
     component: DeleteDoctorComponent
   },
   {

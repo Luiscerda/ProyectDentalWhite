@@ -31,15 +31,15 @@
                 <tbody>
                     <tr *ngFor="let paciente of pacientes | paciente:filterPaciente">
                         <td>{{paciente.tipoId}}</td>
-                        <td>{{paciente.numeroCedula}}</td>
+                        <td>{{paciente.identificacion_Paciente}}</td>
                         <td>{{paciente.nombres}}</td>
                         <td>{{paciente.apellidos}}</td>
                         <td>{{paciente.direccion}}</td>
                         <td>{{paciente.telefono}}</td>
                         <td>{{paciente.edad}}</td>
                         <td>{{paciente.fechaNacimiento}}</td>
-                        <td routerLink='/pacienteEdit/{{paciente.id}}' id="editar"><a class="btn btn-primary btn-edit "><i class="fa fa-edit"></i></a></td>
-                        <td routerLink='/pacienteDelete/{{paciente.id}}' id="eliminar"><a class="btn btn-danger btn-delete"><i class="fa fa-minus-square fa-lg fa-fw"></i></a></td>
+                        <td routerLink='/pacienteEdit/{{paciente.identificacion_Paciente}}' id="editar"><a class="btn btn-primary btn-edit "><i class="fa fa-edit"></i></a></td>
+                        <td routerLink='/pacienteDelete/{{paciente.identificacion_Paciente}}' id="eliminar"><a class="btn btn-danger btn-delete"><i class="fa fa-minus-square fa-lg fa-fw"></i></a></td>
                     </tr>
                 </tbody>
             </table>

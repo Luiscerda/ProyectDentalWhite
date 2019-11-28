@@ -23,16 +23,25 @@ namespace Dental_White.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Tratamiento>> PostTratamiento(Tratamiento tratamiento){
-            _context.Tratamientos.Add(tratamiento);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof (GetTratamientoItem), new {id = tratamiento.Id}, tratamiento);
+        public async Task<ActionResult<Tratamiento>> PostTratamiento(Tratamiento newTratamiento){
+            var tratamientoItem = await _context.Tratamientos.FindAsync(newTratamiento.Codigo_Tratamiento);
+            if (tratamientoItem != null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                _context.Tratamientos.Add(newTratamiento);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof (GetTratamientoItem), new {id = newTratamiento.Codigo_Tratamiento}, newTratamiento);
+            }
+            
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Tratamiento>> GetTratamientoItem(int id)
+        [HttpGet("{codigo}")]
+        public async Task<ActionResult<Tratamiento>> GetTratamientoItem(string codigo)
         {
-            var tratamientoItem = await _context.Tratamientos.FindAsync(id);
+            var tratamientoItem = await _context.Tratamientos.FindAsync(codigo);
             if (tratamientoItem == null)
             {
                 return NotFound();
@@ -40,9 +49,9 @@ namespace Dental_White.Controllers
             return tratamientoItem;
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTratamiento(int id, Tratamiento tratamiento){
-            if (id != tratamiento.Id)
+        [HttpPut("{codigo}")]
+        public async Task<IActionResult> PutTratamiento(string codigo, Tratamiento tratamiento){
+            if (codigo != tratamiento.Codigo_Tratamiento)
             {
                 return BadRequest();
             }
@@ -52,9 +61,9 @@ namespace Dental_White.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTratamiento(int id){
-            var tratamientoItem = await _context.Tratamientos.FindAsync(id);
+        [HttpDelete("{codigo}")]
+        public async Task<IActionResult> DeleteTratamiento(string codigo){
+            var tratamientoItem = await _context.Tratamientos.FindAsync(codigo);
             if (tratamientoItem == null)
             {
                 return NotFound();

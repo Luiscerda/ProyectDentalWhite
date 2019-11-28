@@ -1,6 +1,6 @@
 export class Doctor {
     id:number;
-    numeroCedula:string;
+    identificacion_Doctor:string;
     nombres:string;
     apellidos:string;
     telefono:string;

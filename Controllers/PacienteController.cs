@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dental_White.Moduls;
+using System;
+
 namespace Dental_White.Controllers 
 {
     [Route("api/[controller]")]
@@ -17,8 +19,7 @@ namespace Dental_White.Controllers
             _context = context;
             if(_context.Pacientes.Count() == 0)
             {
-                _context.Pacientes.Add(new Paciente { TipoId = "C.C", NumeroCedula = "1004279985", Nombres = "luis carlos", Apellidos = "Cerda ortiz", Direccion = "Villa catalina 2", Telefono="3003906802", FechaNacimiento = "23/05/1998", Edad=21  });
-                //_context.TaskItems.Add(new TaskItem { Title = "Calendario el proyecto", Description = "Priorizar", Priority = true });
+                _context.Pacientes.Add(new Paciente { TipoId = "C.C", Identificacion_Paciente = "1004279985", Nombres = "luis carlos", Apellidos = "Cerda ortiz", Direccion = "Villa catalina 2", Telefono="3003906802", FechaNacimiento = "23/05/1998", Edad=21  });
                 _context.SaveChanges();
             }
         }
@@ -31,15 +32,22 @@ namespace Dental_White.Controllers
 
         [HttpPost]
         public async Task<ActionResult<Paciente>> PostPaciente(Paciente paciente){
-            _context.Pacientes.Add(paciente);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof (GetPacienteItem), new {id = paciente.Id}, paciente);
+            var pacienteItem = await _context.Pacientes.FindAsync(paciente.Identificacion_Paciente);
+            if (pacienteItem != null)
+            {
+                return BadRequest();
+            }else
+            {
+                _context.Pacientes.Add(paciente);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof (GetPacienteItem), new {id = paciente.Identificacion_Paciente}, paciente);
+            }
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Paciente>> GetPacienteItem(int id)
+        [HttpGet("{identificacion}")]
+        public async Task<ActionResult<Paciente>> GetPacienteItem(string identificacion)
         {
-            var pacienteItem = await _context.Pacientes.FindAsync(id);
+            var pacienteItem = await _context.Pacientes.FindAsync(identificacion);
             if (pacienteItem == null)
             {
                 return NotFound();
@@ -47,9 +55,9 @@ namespace Dental_White.Controllers
             return pacienteItem;
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPacienteItem(int id, Paciente paciente){
-            if (id != paciente.Id)
+        [HttpPut("{cedula}")]
+        public async Task<IActionResult> PutPacienteItem(string cedula, Paciente paciente){
+            if (cedula != paciente.Identificacion_Paciente)
             {
                 return BadRequest();
             }
@@ -59,9 +67,9 @@ namespace Dental_White.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePaciente(int id){
-            var pacienteItem = await _context.Pacientes.FindAsync(id);
+        [HttpDelete("{cedula}")]
+        public async Task<IActionResult> DeletePaciente(string cedula){
+            var pacienteItem = await _context.Pacientes.FindAsync(cedula);
             if (pacienteItem == null)
             {
                 return NotFound();

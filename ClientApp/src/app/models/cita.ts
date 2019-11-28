@@ -5,7 +5,7 @@ export class Cita {
     id:number;
     fecha:string;
     paciente:Paciente;
-    idPaciente:number;
+    identificacion_Paciente:string;
     doctor:Doctor;
-    idDoctor:number;
+    idDoctor:string;
 }

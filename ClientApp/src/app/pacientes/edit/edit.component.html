@@ -44,7 +44,7 @@
                             <label>Numero Identificacion:</label>
                         </div>
                         <div class="form-group">
-                            <input [(ngModel)]="paciente.numeroCedula" class="form-control" placeholder="Identificacion Paciente">
+                            <input [(ngModel)]="paciente.identificacion_Paciente" class="form-control" placeholder="Identificacion Paciente" disabled>
                         </div>
                         <div class="form-group">
                             <label>Apellidos:</label>
@@ -72,9 +72,9 @@
         <div id="tablaBotones">
             <table>
                 <tr>
-                    <td><button (click)="update()" class="btn btn-primary"><label>Modificar</label></button></td>
+                    <td><button (click)="update()" class="btn btn-primary">Modificar</button></td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td><button (click)="goBack()" class="btn btn-danger"><label>Cancelar</label></button></td>
+                    <td><button (click)="goBack()" class="btn btn-danger">Cancelar</button></td>
                 </tr>
             </table>
         </div>

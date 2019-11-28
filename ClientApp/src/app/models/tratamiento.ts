@@ -1,7 +1,6 @@
 export class Tratamiento {
 
-    id:number;
-    codigo:string;
+    codigo_Tratamiento:string; 
     nombre:string;
     costo:number;
 }

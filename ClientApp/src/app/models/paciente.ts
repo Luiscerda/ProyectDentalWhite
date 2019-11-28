@@ -1,8 +1,7 @@
 export class Paciente {
 
-    id:number;
+    identificacion_Paciente:string;
     tipoId:string;
-    numeroCedula:string;
     nombres:string;
     apellidos:string;
     direccion:string;

@@ -1,19 +1,30 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System;
 namespace Dental_White.Moduls
 {
+    [Table("CITA")]
     public class Cita
     {
+        [Key]
         public int Id { get; set; }
-        public string Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
-        public int PacienteId { get; set; }
-        public Paciente Paciente  {get; set; }
+        [ForeignKey("FK_PACIENTE")]
+        public string Identificacion_Paciente { get; set; }
+        public virtual Paciente Paciente  {get; set; }
         
-        public int DoctorId {get; set;}
-        public Doctor Doctor { get; set; }
-        //public ICollection<Paciente> Pacientes { get; set; }
-        //public ICollection<Doctor> Doctores { get; set; }
-        //public ICollection<Hora> Horas { get; set; }
+        [ForeignKey("FK_DOCTOR")] 
+        public string Identificacion_Doctor {get; set;}
+        public virtual Doctor Doctor { get; set; }
+
+        [ForeignKey("FK_HORA")]
+        public int Id_Cita { get; set; }
+        public virtual Hora Hora { get; set; }
+
         
     }
 }

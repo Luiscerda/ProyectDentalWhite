@@ -3,10 +3,3 @@ button{
     width: 300px;
     height: 40px;
 }
-button > label{
-    font-size: 13px;
-  }
-
-input,select{
-    font-size: 13px;
-}

@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Tratamiento } from '../models/tratamiento';
 import { catchError, tap } from 'rxjs/operators';
+import { HandleErrorService } from '../@base/services/handle-error.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,57 +14,45 @@ const httpOptions = {
 })
 export class TratamientoService {
 
-  constructor(private http:HttpClient, @Inject('BASE_URL') private baseUrl:string) { }
-
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-    console.error(error);
-    this.log(`${operation} failed: ${error.message}`);
-    return of(result as T);
-    };
-  }
-
-  private log(message: string) {
-    alert(`TratamientoService: ${message}`);
-  }
+  constructor(private http:HttpClient, @Inject('BASE_URL') private baseUrl:string,
+    private handleService:HandleErrorService) { }
 
   addTratamiento (tratamiento: Tratamiento): Observable<Tratamiento> {
     return this.http.post<Tratamiento>(this.baseUrl+'api/tratamiento', tratamiento, httpOptions).pipe(
-    tap((newTratamiento: Tratamiento) => this.log(`Registrado el tratamiento con Codigo ${newTratamiento.codigo}`)),
-    catchError(this.handleError<Tratamiento>('addTratamiento'))
+    tap((newTratamiento: Tratamiento) => this.handleService.log(`Registrado el tratamiento con Codigo: ${newTratamiento.codigo_Tratamiento}`)),
+    catchError(this.handleService.handleError<Tratamiento>('Agregar Tratamiento'))
     );
   }
 
   getAll():Observable<Tratamiento[]>{
     return this.http.get<Tratamiento[]>(this.baseUrl+'api/tratamiento').pipe(
-      tap(_=>this.log('Consulta De Tratamientos')),
-        catchError(this.handleError<Tratamiento[]>('getAll',[]))
+        catchError(this.handleService.handleError<Tratamiento[]>('getAll',[]))
     );
   }
 
-  get(id: number): Observable<Tratamiento>{
-    const url = `${this.baseUrl + 'api/tratamiento'}/${id}`;
+  get(codigo_Tratamiento: number): Observable<Tratamiento>{
+    const url = `${this.baseUrl + 'api/tratamiento'}/${codigo_Tratamiento}`;
     return this.http.get<Tratamiento>(url).pipe(
-    tap(_ => this.log(`Consultado el tratamiento con id=${id}`)),
-      catchError(this.handleError<Tratamiento>(`getHero id=${id}`))
+    tap(_ => this.handleService.log(`Consultado el tratamiento con codigo: ${codigo_Tratamiento}`)),
+      catchError(this.handleService.handleError<Tratamiento>(`Codigo Tratamiento: ${codigo_Tratamiento}`))
     );
   }
 
   update (tratamiento: Tratamiento): Observable<any> {
-    const url =`${this.baseUrl + 'api/tratamiento'}/${tratamiento.id}`;
+    const url =`${this.baseUrl + 'api/tratamiento'}/${tratamiento.codigo_Tratamiento}`;
       return this.http.put(url, tratamiento, httpOptions).pipe(
-        tap(_ => this.log(`Modificado el tratamiento con Codigo=${tratamiento.codigo}`)),
-        catchError(this.handleError<any>('tratamiento'))
+        tap(_ => this.handleService.log(`Modificado el tratamiento con Codigo: ${tratamiento.codigo_Tratamiento}`)),
+        catchError(this.handleService.handleError<any>('tratamiento'))
       );
   }
 
   delete(tratamiento: Tratamiento | number): Observable<Tratamiento> {
-    const id = typeof tratamiento === 'number' ? tratamiento : tratamiento.id;
-    const url = `${this.baseUrl + 'api/tratamiento'}/${id}`;
+    const codigo = typeof tratamiento === 'number' ? tratamiento : tratamiento.codigo_Tratamiento;
+    const url = `${this.baseUrl + 'api/tratamiento'}/${codigo}`;
     
     return this.http.delete<Tratamiento>(url, httpOptions).pipe(
-      tap(_ => this.log(`Eliminado el tratamiento con id=${id}`)),
-        catchError(this.handleError<Tratamiento>('delete'))
+      tap(_ => this.handleService.log(`Eliminado el tratamiento con codigo: ${codigo}`)),
+        catchError(this.handleService.handleError<Tratamiento>('delete'))
     );
   }
 }
