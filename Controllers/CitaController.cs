@@ -23,20 +23,25 @@ namespace Dental_White.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cita>>> GetCitas()
         {
-            return await _context.Citas.Include(p=>p.Paciente).Include(d=>d.Doctor).ToListAsync();
+            return await _context.Citas.ToListAsync();
         }
         
         [HttpPost]
-        public async Task<ActionResult<Doctor>> PostCita(Cita cita){
-            _context.Citas.Add(cita);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof (GetCitaItem), new {id = cita.Id}, cita);
+        public async Task<ActionResult<Cita>> PostCita(Cita cita){
+            var citaItem = await _context.Citas.FindAsync(cita.Id);
+            if(citaItem != null){
+                return BadRequest();
+            }else{
+                _context.Citas.Add(cita);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof (GetCitaItem), new {id = cita.Id}, cita);
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Cita>> GetCitaItem(int id)
         {
-            var citaItem = await  _context.Citas.FindAsync(id);
+            var citaItem =  _context.Citas.Where(c => c.Id == id).Include(c => c.Paciente).ThenInclude(p => p.Nombres).FirstOrDefault();
             if (citaItem == null)
             {
                 return NotFound();

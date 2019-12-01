@@ -11,18 +11,19 @@ namespace Dental_White.Moduls
     {
         [Key]
         public int Id { get; set; }
-        public DateTime Fecha { get; set; }
+        [Required]
+        public string Fecha { get; set; }
 
-        [ForeignKey("FK_PACIENTE")]
         public string Identificacion_Paciente { get; set; }
+        [ForeignKey("Identificacion_Paciente")]
         public virtual Paciente Paciente  {get; set; }
-        
-        [ForeignKey("FK_DOCTOR")] 
-        public string Identificacion_Doctor {get; set;}
-        public virtual Doctor Doctor { get; set; }
 
-        [ForeignKey("FK_HORA")]
-        public int Id_Cita { get; set; }
+        public string Identificacion_Doctor { get; set; }
+        [ForeignKey("Identificacion_Doctor")]
+        public  Doctor Doctor { get; set; }
+
+        public string Horario { get; set; }
+        [ForeignKey("Horario")]
         public virtual Hora Hora { get; set; }
 
         

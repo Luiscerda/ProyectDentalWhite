@@ -21,10 +21,10 @@ namespace Dental_White.Controllers
             return await _context.Horas.ToListAsync();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Hora>> GetHoraItem(int id)
+        [HttpGet("{hora}")]
+        public async Task<ActionResult<Hora>> GetHoraItem(string hora)
         {
-            var horaItem = await _context.Horas.FindAsync(id);
+            var horaItem = await _context.Horas.FindAsync(hora);
             if (horaItem == null)
             {
                 return NotFound();
@@ -36,12 +36,12 @@ namespace Dental_White.Controllers
         public async Task<ActionResult<Hora>> PostHora(Hora hora){
             _context.Horas.Add(hora);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof (GetHoraItem), new {id = hora.Id}, hora);
+            return CreatedAtAction(nameof (GetHoraItem), new {id = hora.Horario}, hora);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutHora(int id, Hora hora){
-            if (id != hora.Id)
+        [HttpPut("{horario}")]
+        public async Task<IActionResult> PutHora(string horario, Hora hora){
+            if (horario != hora.Horario)
             {
                 return BadRequest();
             }
@@ -51,9 +51,9 @@ namespace Dental_White.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteHora(int id){
-            var horaItem = await _context.Horas.FindAsync(id);
+        [HttpDelete("{horario}")]
+        public async Task<IActionResult> DeleteHora(string horario){
+            var horaItem = await _context.Horas.FindAsync(horario);
             if (horaItem == null)
             {
                 return NotFound();

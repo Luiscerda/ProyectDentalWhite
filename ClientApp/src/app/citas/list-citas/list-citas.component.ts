@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CitaService } from 'src/app/services/cita.service';
+import { Cita } from 'src/app/models/cita';
 
 @Component({
   selector: 'app-list-citas',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCitasComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private citaService:CitaService) { }
+  citas:Cita[];
   ngOnInit() {
+    this.getAll();
   }
+
+  getAll(){
+    this.citaService.getAll().subscribe(citas => this.citas = citas);
+  }
+
+
 
 }

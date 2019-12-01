@@ -49,6 +49,10 @@ import { LoginComponent } from './users/login/login.component';
 import { RegistrationComponent } from './users/registration/registration.component';
 import { ModalComponent } from './modal/modal.component';
 import { AlertModalComponent } from './@base/modals/alert-modal/alert-modal.component';
+import { ModalPacienteComponent } from './modal/modal-paciente/modal-paciente.component';
+import { ModalDoctorComponent } from './modal/modal-doctor/modal-doctor.component';
+import { HorasComponent } from './lists/horas/horas.component';
+import { DoctorComponent } from './lists/doctor/doctor.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +98,11 @@ import { AlertModalComponent } from './@base/modals/alert-modal/alert-modal.comp
     LoginComponent,
     RegistrationComponent,
     ModalComponent,
-    AlertModalComponent
+    AlertModalComponent,
+    ModalPacienteComponent,
+    ModalDoctorComponent,
+    HorasComponent,
+    DoctorComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -107,7 +115,9 @@ import { AlertModalComponent } from './@base/modals/alert-modal/alert-modal.comp
     AppRoutingModule
   ],
   entryComponents: [ModalComponent,
-    AlertModalComponent],
+    AlertModalComponent,
+    ModalPacienteComponent,
+    ModalDoctorComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {PacienteService} from 'src/app/services/paciente.service';
 import {Paciente} from 'src/app/models/paciente';
 
@@ -8,6 +8,7 @@ import {Paciente} from 'src/app/models/paciente';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  @Output() seleccionado = new EventEmitter<Paciente>();
   pacientes: Paciente[];
   constructor(private pacienteService:PacienteService) { }
   filterPaciente = '';
@@ -16,7 +17,10 @@ export class ListComponent implements OnInit {
   }
 
   getAll(){
-    this.pacienteService.getAll().subscribe(pacientes=>this.pacientes=pacientes);
+    this.pacienteService.getAll().subscribe(result => {
+      this.pacientes=result;});
   }
-
+  seleccionar(paciente: Paciente) {
+    this.seleccionado.emit(paciente);
+  }
 }

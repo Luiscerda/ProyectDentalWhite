@@ -23,7 +23,7 @@ export class EditHoraComponent implements OnInit {
   }
 
   get(): void{
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('horario');
     this.horaService.get(id).subscribe(hora => this.hora = hora);
   }
 

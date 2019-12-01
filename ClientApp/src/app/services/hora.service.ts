@@ -19,7 +19,7 @@ export class HoraService {
 
   addHora (hora: Hora): Observable<Hora> {
     return this.http.post<Hora>(this.baseUrl+'api/Hora', hora, httpOptions).pipe(
-    tap((newHora: Hora) => this.handleService.log(`Registrado el horario con ID: ${newHora.id}`)),
+    tap((newHora: Hora) => this.handleService.log(`Registrada la hora: ${newHora.horario}`)),
     catchError(this.handleService.handleError<Hora>('Agregar Horario'))
     );
   }
@@ -39,15 +39,15 @@ export class HoraService {
   }
 
   update (hora: Hora): Observable<any> {
-    const url =`${this.baseUrl + 'api/hora'}/${hora.id}`;
+    const url =`${this.baseUrl + 'api/hora'}/${hora.horario}`;
       return this.http.put(url, hora, httpOptions).pipe(
-        tap(_ => this.handleService.log(`Modificada la hora con ID: ${hora.id}`)),
+        tap(_ => this.handleService.log(`Modificada la hora con ID: ${hora.horario}`)),
         catchError(this.handleService.handleError<any>('hora'))
       );
   }
 
   delete(hora: Hora | number): Observable<Hora> {
-    const id = typeof hora === 'number' ? hora : hora.id;
+    const id = typeof hora === 'number' ? hora : hora.horario;
     const url = `${this.baseUrl + 'api/hora'}/${id}`;
     
     return this.http.delete<Hora>(url, httpOptions).pipe(

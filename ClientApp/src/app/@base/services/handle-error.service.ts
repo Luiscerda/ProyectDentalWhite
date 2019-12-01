@@ -31,6 +31,10 @@ export class HandleErrorService {
   }
 
   public error500(error:any){
+   // let mensaje : string = `Error en el momento, recargue la pagina .<br/><br/> ${error}`;
+    const modalRef = this.modalService.open(AlertModalComponent);
+    modalRef.componentInstance.title = 'Mensaje de Error';
+    modalRef.componentInstance.message = error;
     console.error(error);
   }
 

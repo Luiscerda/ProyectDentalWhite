@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Dental_White.Migrations
 {
@@ -12,10 +11,10 @@ namespace Dental_White.Migrations
                 columns: table => new
                 {
                     Identificacion_Doctor = table.Column<string>(nullable: false),
-                    Nombres = table.Column<string>(nullable: true),
-                    Apellidos = table.Column<string>(nullable: true),
-                    Telefono = table.Column<string>(nullable: true),
-                    FechaNacimiento = table.Column<string>(nullable: true),
+                    Nombres = table.Column<string>(nullable: false),
+                    Apellidos = table.Column<string>(nullable: false),
+                    Telefono = table.Column<string>(nullable: false),
+                    FechaNacimiento = table.Column<string>(nullable: false),
                     Telefono2 = table.Column<string>(nullable: true),
                     Edad = table.Column<int>(nullable: false),
                     Direccion = table.Column<string>(nullable: true)
@@ -29,13 +28,11 @@ namespace Dental_White.Migrations
                 name: "HORA",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Horario = table.Column<string>(nullable: true)
+                    Horario = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HORA", x => x.Id);
+                    table.PrimaryKey("PK_HORA", x => x.Horario);
                 });
 
             migrationBuilder.CreateTable(
@@ -75,51 +72,48 @@ namespace Dental_White.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Fecha = table.Column<DateTime>(nullable: false),
+                    Fecha = table.Column<string>(nullable: false),
                     Identificacion_Paciente = table.Column<string>(nullable: true),
-                    PacienteIdentificacion_Paciente = table.Column<string>(nullable: true),
                     Identificacion_Doctor = table.Column<string>(nullable: true),
-                    DoctorIdentificacion_Doctor = table.Column<string>(nullable: true),
-                    Id_Cita = table.Column<int>(nullable: false),
-                    HoraId = table.Column<int>(nullable: true)
+                    Horario = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CITA", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CITA_DOCTOR_DoctorIdentificacion_Doctor",
-                        column: x => x.DoctorIdentificacion_Doctor,
+                        name: "FK_CITA_HORA_Horario",
+                        column: x => x.Horario,
+                        principalTable: "HORA",
+                        principalColumn: "Horario",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CITA_DOCTOR_Identificacion_Doctor",
+                        column: x => x.Identificacion_Doctor,
                         principalTable: "DOCTOR",
                         principalColumn: "Identificacion_Doctor",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CITA_HORA_HoraId",
-                        column: x => x.HoraId,
-                        principalTable: "HORA",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_CITA_PACIENTE_PacienteIdentificacion_Paciente",
-                        column: x => x.PacienteIdentificacion_Paciente,
+                        name: "FK_CITA_PACIENTE_Identificacion_Paciente",
+                        column: x => x.Identificacion_Paciente,
                         principalTable: "PACIENTE",
                         principalColumn: "Identificacion_Paciente",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CITA_DoctorIdentificacion_Doctor",
+                name: "IX_CITA_Horario",
                 table: "CITA",
-                column: "DoctorIdentificacion_Doctor");
+                column: "Horario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CITA_HoraId",
+                name: "IX_CITA_Identificacion_Doctor",
                 table: "CITA",
-                column: "HoraId");
+                column: "Identificacion_Doctor");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CITA_PacienteIdentificacion_Paciente",
+                name: "IX_CITA_Identificacion_Paciente",
                 table: "CITA",
-                column: "PacienteIdentificacion_Paciente");
+                column: "Identificacion_Paciente");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -131,10 +125,10 @@ namespace Dental_White.Migrations
                 name: "TRATAMIENTO");
 
             migrationBuilder.DropTable(
-                name: "DOCTOR");
+                name: "HORA");
 
             migrationBuilder.DropTable(
-                name: "HORA");
+                name: "DOCTOR");
 
             migrationBuilder.DropTable(
                 name: "PACIENTE");

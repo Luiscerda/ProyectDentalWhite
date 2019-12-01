@@ -23,4 +23,10 @@ export class CitaService {
     catchError(this.handleService.handleError<Cita>('Asignar Cita'))
     );
   }
+
+  getAll():Observable<Cita[]>{
+    return this.http.get<Cita[]>(this.baseUrl+'api/Cita').pipe(
+        catchError(this.handleService.handleError<Cita[]>('Consulta  Citas',[]))
+    );
+  }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,6 +14,11 @@ namespace Dental_White.Controllers
 
         public DoctorController(DentalWhiteContext context){
             _context = context;
+            if(_context.Doctores.Count() == 0)
+            {
+                _context.Doctores.Add(new Doctor { Identificacion_Doctor = "39100385", Nombres = "Naila", Apellidos = "Ortiz", Direccion = "Villa catalina 2", Telefono="3017193553", Telefono2="3103111136",FechaNacimiento = "01/03/1980", Edad=39  });
+                _context.SaveChanges();
+            }
         }
 
         [HttpGet]

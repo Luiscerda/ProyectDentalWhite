@@ -77,11 +77,11 @@ const routes:Routes =[
     component: DeleteCitasComponent
   },
   {
-    path: 'editHora/:id',
+    path: 'editHora/:horario',
     component: EditHoraComponent
   },
   {
-    path: 'deleteHora/:id',
+    path: 'deleteHora/:horario',
     component: DeleteHoraComponent
   },
   {

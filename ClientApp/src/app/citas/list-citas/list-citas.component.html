@@ -25,11 +25,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let cita of citas">
+                    <td>{{cita.id}}</td>
+                    <td>{{cita.paciente}}</td>
+                    <td>{{cita.identificacion_Doctor}}</td>
+                    <td>{{cita.fecha}}</td>
                     <td></td>
                     <td routerLink='/editCita' id="editar"><a class="btn btn-primary btn-edit "><i class="fa fa-edit"></i></a></td>
                     <td routerLink='/deleteCita' id="eliminar"><a class="btn btn-danger btn-delete"><i class="fa fa-minus-square fa-lg fa-fw"></i></a></td>

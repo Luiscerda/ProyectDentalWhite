@@ -10,7 +10,7 @@ namespace Dental_White.Moduls
     public class Hora
     {
         [Key]
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Horario { get; set; }
 
         public virtual List<Cita> Citas { get; set; }

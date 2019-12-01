@@ -13,17 +13,20 @@ export class AddHoraComponent implements OnInit {
   hora:Hora;
   horas:Hora[];
 
+
   ngOnInit() {
-    this.hora = { id:0, horario:''};
+    this.hora = { horario:''};
     this.getAll();
   }
 
   add(){
     this.horaService.addHora(this.hora)
-    .subscribe(() => this.getAll());
+    .subscribe(() => this.getAll());;
   }
+
   getAll(){
-    this.horaService.getAll().subscribe(horas=>this.horas=horas);
+    this.horaService.getAll().subscribe(horas => this.horas=horas);
   }
+  
 
 }
