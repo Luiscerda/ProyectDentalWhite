@@ -27,14 +27,13 @@ export class HandleErrorService {
     const modalRef = this.modalService.open(AlertModalComponent);
     modalRef.componentInstance.title = 'Mensaje';
     modalRef.componentInstance.message = (`${message}`);
-    //console.log(message);
   }
 
   public error500(error:any){
-   // let mensaje : string = `Error en el momento, recargue la pagina .<br/><br/> ${error}`;
+   let mensaje : string = `Estamos teniendo inconvenientes por fabor vuelva a intentarlo .<br/><br/> ${error}`;
     const modalRef = this.modalService.open(AlertModalComponent);
     modalRef.componentInstance.title = 'Mensaje de Error';
-    modalRef.componentInstance.message = error;
+    modalRef.componentInstance.message = mensaje;
     console.error(error);
   }
 

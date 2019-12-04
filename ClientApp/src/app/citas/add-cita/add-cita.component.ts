@@ -67,7 +67,7 @@ export class AddCitaComponent implements OnInit {
   }
 
   openModalPaciente(){
-    this.modalService.open(ModalPacienteComponent, {size: 'lg'}).result.then((paciente)=> this.actualizar(paciente));
+    this.modalService.open(ModalPacienteComponent).result.then((paciente)=> this.actualizar(paciente));
   }
   actualizar(paciente: Paciente) {
         

@@ -53,6 +53,7 @@ import { ModalPacienteComponent } from './modal/modal-paciente/modal-paciente.co
 import { ModalDoctorComponent } from './modal/modal-doctor/modal-doctor.component';
 import { HorasComponent } from './lists/horas/horas.component';
 import { DoctorComponent } from './lists/doctor/doctor.component';
+import { PacienteComponent } from './lists/paciente/paciente.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { DoctorComponent } from './lists/doctor/doctor.component';
     ModalPacienteComponent,
     ModalDoctorComponent,
     HorasComponent,
-    DoctorComponent
+    DoctorComponent,
+    PacienteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

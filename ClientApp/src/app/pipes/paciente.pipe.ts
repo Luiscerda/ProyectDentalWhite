@@ -9,7 +9,7 @@ export class PacientePipe implements PipeTransform {
     if(arg === '' || arg.length < 4) return value;
     const resultPaciente = [];
     for(const paciente of value){
-      if (paciente.identificacion_Paciente.indexOf(arg) > -1) {
+      if (paciente.nombres.indexOf(arg) > -1) {
         resultPaciente.push(paciente);
       }
     }
